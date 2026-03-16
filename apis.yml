@@ -1,0 +1,36 @@
+aid: apache-solr
+name: Apache Solr
+description: >-
+  Apache Solr is an open-source enterprise-search platform built on Apache Lucene. It provides distributed indexing, replication, load-balanced querying, automated failover and recovery, and centralized configuration through SolrCloud.
+type: Index
+position: Consumer
+access: 3rd-Party
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Search
+  - Full-Text Search
+  - Enterprise Search
+  - Lucene
+  - SolrCloud
+created: '2026-03-16'
+modified: '2026-03-16'
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/apache-solr/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: apache-solr:apache-solr-rest-api
+    name: Apache Solr REST API
+    description: >-
+      The Solr API provides REST/HTTP endpoints for document indexing, searching with faceting and highlighting, schema management, collections management, configuration management, and SolrCloud cluster operations, along with the SolrJ Java client library.
+    humanURL: https://solr.apache.org/guide/solr/latest/
+    tags:
+      - REST
+      - Search
+      - Indexing
+      - SolrCloud
+    properties:
+      - type: Documentation
+        url: https://solr.apache.org/guide/solr/latest/
+maintainers:
+  - FN: Kin Lane
+    email: info@apievangelist.com
