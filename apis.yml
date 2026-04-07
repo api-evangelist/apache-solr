@@ -7,10 +7,10 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Search
-  - Full-Text Search
   - Enterprise Search
+  - Full-Text Search
   - Lucene
+  - Search
   - SolrCloud
 created: '2026-03-16'
 modified: '2026-03-16'
@@ -24,9 +24,9 @@ apis:
       The Solr API provides REST/HTTP endpoints for document indexing, searching with faceting and highlighting, schema management, collections management, configuration management, and SolrCloud cluster operations, along with the SolrJ Java client library.
     humanURL: https://solr.apache.org/guide/solr/latest/
     tags:
+      - Indexing
       - REST
       - Search
-      - Indexing
       - SolrCloud
     properties:
       - type: Documentation
