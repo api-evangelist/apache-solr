@@ -1,0 +1,542 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Solr HTTP API",
+    "version": "9.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cluster",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invoke a Collections / Cluster API action (v1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/admin/collections",
+            "params": [
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "Action name (e.g. CLUSTERSTATUS, CLUSTERPROP, BALANCESHARDUNIQUE, REPLACENODE, DELETENODE, ADDROLE, REMOVEROLE, OVERSEERSTATUS)"
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shard",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "val",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "node",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sourceNode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "targetNode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "role",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "async",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Invoke a Collections / Cluster API action (v1)"
+        },
+        {
+          "info": {
+            "name": "Get cluster status (v2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/api/cluster"
+          },
+          "docs": "Get cluster status (v2)"
+        },
+        {
+          "info": {
+            "name": "Modify cluster roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/api/cluster",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify cluster roles"
+        },
+        {
+          "info": {
+            "name": "Set a cluster property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{host}:{port}/api/cluster/properties/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set a cluster property"
+        },
+        {
+          "info": {
+            "name": "Delete a cluster property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:{port}/api/cluster/properties/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a cluster property"
+        },
+        {
+          "info": {
+            "name": "Balance replicas across nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/api/cluster/replicas/balance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Balance replicas across nodes"
+        },
+        {
+          "info": {
+            "name": "Migrate replicas from source nodes to target nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/api/cluster/replicas/migrate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Migrate replicas from source nodes to target nodes"
+        },
+        {
+          "info": {
+            "name": "Replace a node (recreate its replicas elsewhere)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/api/cluster/nodes/:sourceNode/replace",
+            "params": [
+              {
+                "name": "sourceNode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a node (recreate its replicas elsewhere)"
+        },
+        {
+          "info": {
+            "name": "Delete all replicas in a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/api/cluster/nodes/:node/clear/",
+            "params": [
+              {
+                "name": "node",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete all replicas in a node"
+        },
+        {
+          "info": {
+            "name": "Overseer status, metrics, and recent failures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/api/cluster/overseer"
+          },
+          "docs": "Overseer status, metrics, and recent failures"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Collections",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Distribute a property evenly across nodes for a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/api/collections/:collection/balance-shard-unique",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Distribute a property evenly across nodes for a collection"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Schema",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the entire schema of a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "wt",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the entire schema of a collection"
+        },
+        {
+          "info": {
+            "name": "Execute schema modification commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/solr/:collection/schema",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute schema modification commands"
+        },
+        {
+          "info": {
+            "name": "List all fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/fields",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeDynamic",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "showDefaults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fl",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all fields"
+        },
+        {
+          "info": {
+            "name": "Retrieve a field definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/fields/:fieldname",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fieldname",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a field definition"
+        },
+        {
+          "info": {
+            "name": "List dynamic field rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/dynamicfields",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List dynamic field rules"
+        },
+        {
+          "info": {
+            "name": "List field types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/fieldtypes",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List field types"
+        },
+        {
+          "info": {
+            "name": "List copy field rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/copyfields",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List copy field rules"
+        },
+        {
+          "info": {
+            "name": "Get the unique key field name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/uniquekey",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the unique key field name"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Query",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute a search query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/select",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Solr query string"
+              },
+              {
+                "name": "fq",
+                "value": "",
+                "type": "query",
+                "description": "Filter query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "rows",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fl",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "wt",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Execute a search query"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Update",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Index, update, or delete documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/solr/:collection/update",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "commit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Index, update, or delete documents"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
