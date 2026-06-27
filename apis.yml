@@ -126,10 +126,10 @@ common:
     url: https://solr.apache.org/community.html
   - type: TermsOfService
     url: https://www.apache.org/licenses/
-  - type: SDK
+  - type: SDKs
     url: https://solr.apache.org/guide/solr/latest/deployment-guide/solrj.html
     title: SolrJ Java Client
-  - type: SDK
+  - type: SDKs
     url: https://github.com/apache/solr-operator
     title: Solr Kubernetes Operator
   - type: Features
