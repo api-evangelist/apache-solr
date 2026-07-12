@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/apache-solr-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: Enabled when Solr's BasicAuthPlugin is configured
+  sources:
+  - openapi/apache-solr-openapi.yml

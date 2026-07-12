@@ -112,6 +112,12 @@ apis:
         url: https://solr.apache.org/guide/solr/latest/configuration-guide/config-api.html
 
 common:
+  - type: VulnerabilityDisclosure
+    url: security/apache-solr-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/apache-solr-domain-security.yml
+  - type: Authentication
+    url: authentication/apache-solr-authentication.yml
   - type: GitHubRepository
     url: https://github.com/apache/solr
   - type: Documentation
@@ -180,6 +186,8 @@ common:
         description: Data flow integration for automated document ingestion pipelines.
       - name: OpenNLP
         description: Natural language processing integration for text analysis and named entity recognition.
+  - type: Blog
+    url: https://solr.apache.org/news.html
 
 maintainers:
   - FN: Kin Lane
