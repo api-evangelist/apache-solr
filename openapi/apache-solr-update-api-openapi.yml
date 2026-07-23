@@ -1,0 +1,82 @@
+openapi: 3.1.0
+info:
+  title: Apache Solr HTTP Cluster Update API
+  version: 9.x
+  description: 'A best-effort OpenAPI 3.1 description of selected endpoints from the Apache
+
+    Solr HTTP API, including the Collections (Cluster/Node Management), Schema,
+
+    and v2 cluster APIs. Solr''s full APIs are exposed as v1 (action-style query
+
+    parameters under `/solr/admin/*`) and v2 (resource-style paths under
+
+    `/api/*`). Authentication is optional but BasicAuth is supported when the
+
+    Solr `BasicAuthPlugin` is enabled.
+
+    '
+  contact:
+    name: Apache Solr
+    url: https://solr.apache.org/
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://{host}:{port}
+  description: Default Solr server
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8983'
+tags:
+- name: Update
+  description: Index, update, and delete documents
+paths:
+  /solr/{collection}/update:
+    parameters:
+    - name: collection
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Update
+      summary: Index, update, or delete documents
+      operationId: update
+      parameters:
+      - name: commit
+        in: query
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+              - type: array
+                items:
+                  type: object
+              - type: object
+          application/xml:
+            schema:
+              type: string
+          text/csv:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: Update response
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Enabled when Solr's BasicAuthPlugin is configured

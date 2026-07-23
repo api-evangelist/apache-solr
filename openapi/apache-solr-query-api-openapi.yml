@@ -1,0 +1,102 @@
+openapi: 3.1.0
+info:
+  title: Apache Solr HTTP Cluster Query API
+  version: 9.x
+  description: 'A best-effort OpenAPI 3.1 description of selected endpoints from the Apache
+
+    Solr HTTP API, including the Collections (Cluster/Node Management), Schema,
+
+    and v2 cluster APIs. Solr''s full APIs are exposed as v1 (action-style query
+
+    parameters under `/solr/admin/*`) and v2 (resource-style paths under
+
+    `/api/*`). Authentication is optional but BasicAuth is supported when the
+
+    Solr `BasicAuthPlugin` is enabled.
+
+    '
+  contact:
+    name: Apache Solr
+    url: https://solr.apache.org/
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://{host}:{port}
+  description: Default Solr server
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8983'
+tags:
+- name: Query
+  description: Search a collection
+paths:
+  /solr/{collection}/select:
+    parameters:
+    - name: collection
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      tags:
+      - Query
+      summary: Execute a search query
+      operationId: search
+      parameters:
+      - name: q
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Solr query string
+      - name: fq
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Filter query
+      - name: sort
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: start
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: rows
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: fl
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: wt
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - json
+          - xml
+          - csv
+      responses:
+        '200':
+          description: Query response
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Enabled when Solr's BasicAuthPlugin is configured

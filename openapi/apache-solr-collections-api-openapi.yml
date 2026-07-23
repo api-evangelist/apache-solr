@@ -1,0 +1,145 @@
+openapi: 3.1.0
+info:
+  title: Apache Solr HTTP Cluster Collections API
+  version: 9.x
+  description: 'A best-effort OpenAPI 3.1 description of selected endpoints from the Apache
+
+    Solr HTTP API, including the Collections (Cluster/Node Management), Schema,
+
+    and v2 cluster APIs. Solr''s full APIs are exposed as v1 (action-style query
+
+    parameters under `/solr/admin/*`) and v2 (resource-style paths under
+
+    `/api/*`). Authentication is optional but BasicAuth is supported when the
+
+    Solr `BasicAuthPlugin` is enabled.
+
+    '
+  contact:
+    name: Apache Solr
+    url: https://solr.apache.org/
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://{host}:{port}
+  description: Default Solr server
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8983'
+tags:
+- name: Collections
+  description: Manage SolrCloud collections, replicas, and nodes
+paths:
+  /solr/admin/collections:
+    get:
+      tags:
+      - Collections
+      summary: Invoke a Collections / Cluster API action (v1)
+      operationId: collectionsAction
+      parameters:
+      - name: action
+        in: query
+        required: true
+        description: Action name (e.g. CLUSTERSTATUS, CLUSTERPROP, BALANCESHARDUNIQUE, REPLACENODE, DELETENODE, ADDROLE, REMOVEROLE, OVERSEERSTATUS)
+        schema:
+          type: string
+          enum:
+          - CLUSTERSTATUS
+          - CLUSTERPROP
+          - BALANCESHARDUNIQUE
+          - REPLACENODE
+          - DELETENODE
+          - ADDROLE
+          - REMOVEROLE
+          - OVERSEERSTATUS
+      - name: collection
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: shard
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: val
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: node
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sourceNode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: targetNode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: role
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: async
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Action response
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/collections/{collection}/balance-shard-unique:
+    parameters:
+    - name: collection
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Collections
+      summary: Distribute a property evenly across nodes for a collection
+      operationId: balanceShardUnique
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - property
+              properties:
+                property:
+                  type: string
+                onlyactivenodes:
+                  type: boolean
+                shardUnique:
+                  type: boolean
+      responses:
+        '200':
+          description: Balance accepted
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Enabled when Solr's BasicAuthPlugin is configured

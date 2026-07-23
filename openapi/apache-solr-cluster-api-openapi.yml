@@ -1,0 +1,298 @@
+openapi: 3.1.0
+info:
+  title: Apache Solr HTTP Cluster API
+  version: 9.x
+  description: 'A best-effort OpenAPI 3.1 description of selected endpoints from the Apache
+
+    Solr HTTP API, including the Collections (Cluster/Node Management), Schema,
+
+    and v2 cluster APIs. Solr''s full APIs are exposed as v1 (action-style query
+
+    parameters under `/solr/admin/*`) and v2 (resource-style paths under
+
+    `/api/*`). Authentication is optional but BasicAuth is supported when the
+
+    Solr `BasicAuthPlugin` is enabled.
+
+    '
+  contact:
+    name: Apache Solr
+    url: https://solr.apache.org/
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: http://{host}:{port}
+  description: Default Solr server
+  variables:
+    host:
+      default: localhost
+    port:
+      default: '8983'
+tags:
+- name: Cluster
+  description: Cluster status and properties
+paths:
+  /solr/admin/collections:
+    get:
+      tags:
+      - Cluster
+      summary: Invoke a Collections / Cluster API action (v1)
+      operationId: collectionsAction
+      parameters:
+      - name: action
+        in: query
+        required: true
+        description: Action name (e.g. CLUSTERSTATUS, CLUSTERPROP, BALANCESHARDUNIQUE, REPLACENODE, DELETENODE, ADDROLE, REMOVEROLE, OVERSEERSTATUS)
+        schema:
+          type: string
+          enum:
+          - CLUSTERSTATUS
+          - CLUSTERPROP
+          - BALANCESHARDUNIQUE
+          - REPLACENODE
+          - DELETENODE
+          - ADDROLE
+          - REMOVEROLE
+          - OVERSEERSTATUS
+      - name: collection
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: shard
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: name
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: val
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: node
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sourceNode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: targetNode
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: role
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: async
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Action response
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/cluster:
+    get:
+      tags:
+      - Cluster
+      summary: Get cluster status (v2)
+      operationId: getCluster
+      responses:
+        '200':
+          description: Cluster status
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      tags:
+      - Cluster
+      summary: Modify cluster roles
+      operationId: modifyCluster
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: Body containing add-role or remove-role objects
+      responses:
+        '200':
+          description: Cluster modification accepted
+  /api/cluster/properties/{name}:
+    parameters:
+    - name: name
+      in: path
+      required: true
+      schema:
+        type: string
+    put:
+      tags:
+      - Cluster
+      summary: Set a cluster property
+      operationId: setClusterProperty
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+      responses:
+        '200':
+          description: Cluster property updated
+    delete:
+      tags:
+      - Cluster
+      summary: Delete a cluster property
+      operationId: deleteClusterProperty
+      responses:
+        '200':
+          description: Cluster property deleted
+  /api/cluster/replicas/balance:
+    post:
+      tags:
+      - Cluster
+      summary: Balance replicas across nodes
+      operationId: balanceReplicas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nodes:
+                  type: array
+                  items:
+                    type: string
+                waitForFinalState:
+                  type: boolean
+                async:
+                  type: string
+      responses:
+        '200':
+          description: Balance request accepted
+  /api/cluster/replicas/migrate:
+    post:
+      tags:
+      - Cluster
+      summary: Migrate replicas from source nodes to target nodes
+      operationId: migrateReplicas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - sourceNodes
+              properties:
+                sourceNodes:
+                  type: array
+                  items:
+                    type: string
+                targetNodes:
+                  type: array
+                  items:
+                    type: string
+                waitForFinalState:
+                  type: boolean
+                async:
+                  type: string
+      responses:
+        '200':
+          description: Migration request accepted
+  /api/cluster/nodes/{sourceNode}/replace:
+    parameters:
+    - name: sourceNode
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Cluster
+      summary: Replace a node (recreate its replicas elsewhere)
+      operationId: replaceNode
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                targetNode:
+                  type: string
+                parallel:
+                  type: boolean
+                waitForFinalState:
+                  type: boolean
+                async:
+                  type: string
+                timeout:
+                  type: integer
+      responses:
+        '200':
+          description: Replace request accepted
+  /api/cluster/nodes/{node}/clear/:
+    parameters:
+    - name: node
+      in: path
+      required: true
+      schema:
+        type: string
+    post:
+      tags:
+      - Cluster
+      summary: Delete all replicas in a node
+      operationId: clearNode
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                async:
+                  type: string
+      responses:
+        '200':
+          description: Clear request accepted
+  /api/cluster/overseer:
+    get:
+      tags:
+      - Cluster
+      summary: Overseer status, metrics, and recent failures
+      operationId: getOverseer
+      responses:
+        '200':
+          description: Overseer status
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Enabled when Solr's BasicAuthPlugin is configured
