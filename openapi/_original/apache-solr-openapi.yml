@@ -1,0 +1,582 @@
+openapi: 3.1.0
+info:
+  title: Apache Solr HTTP API
+  version: "9.x"
+  description: |
+    A best-effort OpenAPI 3.1 description of selected endpoints from the Apache
+    Solr HTTP API, including the Collections (Cluster/Node Management), Schema,
+    and v2 cluster APIs. Solr's full APIs are exposed as v1 (action-style query
+    parameters under `/solr/admin/*`) and v2 (resource-style paths under
+    `/api/*`). Authentication is optional but BasicAuth is supported when the
+    Solr `BasicAuthPlugin` is enabled.
+  contact:
+    name: Apache Solr
+    url: https://solr.apache.org/
+  license:
+    name: Apache-2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+  - url: http://{host}:{port}
+    description: Default Solr server
+    variables:
+      host:
+        default: localhost
+      port:
+        default: "8983"
+tags:
+  - name: Cluster
+    description: Cluster status and properties
+  - name: Collections
+    description: Manage SolrCloud collections, replicas, and nodes
+  - name: Schema
+    description: Read and modify the schema of a collection
+  - name: Query
+    description: Search a collection
+  - name: Update
+    description: Index, update, and delete documents
+paths:
+  /solr/admin/collections:
+    get:
+      tags: [Cluster, Collections]
+      summary: Invoke a Collections / Cluster API action (v1)
+      operationId: collectionsAction
+      parameters:
+        - name: action
+          in: query
+          required: true
+          description: Action name (e.g. CLUSTERSTATUS, CLUSTERPROP, BALANCESHARDUNIQUE, REPLACENODE, DELETENODE, ADDROLE, REMOVEROLE, OVERSEERSTATUS)
+          schema:
+            type: string
+            enum:
+              - CLUSTERSTATUS
+              - CLUSTERPROP
+              - BALANCESHARDUNIQUE
+              - REPLACENODE
+              - DELETENODE
+              - ADDROLE
+              - REMOVEROLE
+              - OVERSEERSTATUS
+        - name: collection
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: shard
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: name
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: val
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: node
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: sourceNode
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: targetNode
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: role
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: async
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Action response
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/cluster:
+    get:
+      tags: [Cluster]
+      summary: Get cluster status (v2)
+      operationId: getCluster
+      responses:
+        "200":
+          description: Cluster status
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      tags: [Cluster]
+      summary: Modify cluster roles
+      operationId: modifyCluster
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: "Body containing add-role or remove-role objects"
+      responses:
+        "200":
+          description: Cluster modification accepted
+  /api/cluster/properties/{name}:
+    parameters:
+      - name: name
+        in: path
+        required: true
+        schema:
+          type: string
+    put:
+      tags: [Cluster]
+      summary: Set a cluster property
+      operationId: setClusterProperty
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                value:
+                  type: string
+      responses:
+        "200":
+          description: Cluster property updated
+    delete:
+      tags: [Cluster]
+      summary: Delete a cluster property
+      operationId: deleteClusterProperty
+      responses:
+        "200":
+          description: Cluster property deleted
+  /api/cluster/replicas/balance:
+    post:
+      tags: [Cluster]
+      summary: Balance replicas across nodes
+      operationId: balanceReplicas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nodes:
+                  type: array
+                  items:
+                    type: string
+                waitForFinalState:
+                  type: boolean
+                async:
+                  type: string
+      responses:
+        "200":
+          description: Balance request accepted
+  /api/cluster/replicas/migrate:
+    post:
+      tags: [Cluster]
+      summary: Migrate replicas from source nodes to target nodes
+      operationId: migrateReplicas
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [sourceNodes]
+              properties:
+                sourceNodes:
+                  type: array
+                  items:
+                    type: string
+                targetNodes:
+                  type: array
+                  items:
+                    type: string
+                waitForFinalState:
+                  type: boolean
+                async:
+                  type: string
+      responses:
+        "200":
+          description: Migration request accepted
+  /api/cluster/nodes/{sourceNode}/replace:
+    parameters:
+      - name: sourceNode
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Cluster]
+      summary: Replace a node (recreate its replicas elsewhere)
+      operationId: replaceNode
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                targetNode:
+                  type: string
+                parallel:
+                  type: boolean
+                waitForFinalState:
+                  type: boolean
+                async:
+                  type: string
+                timeout:
+                  type: integer
+      responses:
+        "200":
+          description: Replace request accepted
+  /api/cluster/nodes/{node}/clear/:
+    parameters:
+      - name: node
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Cluster]
+      summary: Delete all replicas in a node
+      operationId: clearNode
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                async:
+                  type: string
+      responses:
+        "200":
+          description: Clear request accepted
+  /api/cluster/overseer:
+    get:
+      tags: [Cluster]
+      summary: Overseer status, metrics, and recent failures
+      operationId: getOverseer
+      responses:
+        "200":
+          description: Overseer status
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/collections/{collection}/balance-shard-unique:
+    parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Collections]
+      summary: Distribute a property evenly across nodes for a collection
+      operationId: balanceShardUnique
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [property]
+              properties:
+                property:
+                  type: string
+                onlyactivenodes:
+                  type: boolean
+                shardUnique:
+                  type: boolean
+      responses:
+        "200":
+          description: Balance accepted
+  /solr/{collection}/schema:
+    parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Schema]
+      summary: Retrieve the entire schema of a collection
+      operationId: getSchema
+      parameters:
+        - name: wt
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [json, xml, schema.xml]
+      responses:
+        "200":
+          description: Schema document
+          content:
+            application/json:
+              schema:
+                type: object
+    post:
+      tags: [Schema]
+      summary: Execute schema modification commands
+      operationId: modifySchema
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              description: "Schema modification commands (add-field, delete-field, replace-field, add-field-type, etc.)"
+      responses:
+        "200":
+          description: Schema modified
+  /solr/{collection}/schema/fields:
+    parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Schema]
+      summary: List all fields
+      operationId: listFields
+      parameters:
+        - name: includeDynamic
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: showDefaults
+          in: query
+          required: false
+          schema:
+            type: boolean
+        - name: fl
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        "200":
+          description: List of fields
+          content:
+            application/json:
+              schema:
+                type: object
+  /solr/{collection}/schema/fields/{fieldname}:
+    parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: fieldname
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Schema]
+      summary: Retrieve a field definition
+      operationId: getField
+      responses:
+        "200":
+          description: Field definition
+          content:
+            application/json:
+              schema:
+                type: object
+  /solr/{collection}/schema/dynamicfields:
+    parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Schema]
+      summary: List dynamic field rules
+      operationId: listDynamicFields
+      responses:
+        "200":
+          description: Dynamic field rules
+          content:
+            application/json:
+              schema:
+                type: object
+  /solr/{collection}/schema/fieldtypes:
+    parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Schema]
+      summary: List field types
+      operationId: listFieldTypes
+      responses:
+        "200":
+          description: Field types
+          content:
+            application/json:
+              schema:
+                type: object
+  /solr/{collection}/schema/copyfields:
+    parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Schema]
+      summary: List copy field rules
+      operationId: listCopyFields
+      responses:
+        "200":
+          description: Copy field rules
+          content:
+            application/json:
+              schema:
+                type: object
+  /solr/{collection}/schema/uniquekey:
+    parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Schema]
+      summary: Get the unique key field name
+      operationId: getUniqueKey
+      responses:
+        "200":
+          description: Unique key field
+          content:
+            application/json:
+              schema:
+                type: object
+  /solr/{collection}/select:
+    parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+    get:
+      tags: [Query]
+      summary: Execute a search query
+      operationId: search
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Solr query string
+        - name: fq
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Filter query
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: start
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: rows
+          in: query
+          required: false
+          schema:
+            type: integer
+        - name: fl
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: wt
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [json, xml, csv]
+      responses:
+        "200":
+          description: Query response
+          content:
+            application/json:
+              schema:
+                type: object
+  /solr/{collection}/update:
+    parameters:
+      - name: collection
+        in: path
+        required: true
+        schema:
+          type: string
+    post:
+      tags: [Update]
+      summary: Index, update, or delete documents
+      operationId: update
+      parameters:
+        - name: commit
+          in: query
+          required: false
+          schema:
+            type: boolean
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              oneOf:
+                - type: array
+                  items:
+                    type: object
+                - type: object
+          application/xml:
+            schema:
+              type: string
+          text/csv:
+            schema:
+              type: string
+      responses:
+        "200":
+          description: Update response
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Enabled when Solr's BasicAuthPlugin is configured

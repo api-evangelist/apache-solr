@@ -2,11 +2,11 @@
   "repo": "apache-solr",
   "feeds": [
     {
-      "source": "https://solr.apache.org/news.html",
+      "source": "https://solr.apache.org/feeds/solr/news.atom.xml",
       "feed_url": "https://solr.apache.org/feeds/solr/news.atom.xml",
       "title": "",
       "saved": 0,
-      "method": "discovered"
+      "method": "feed"
     },
     {
       "source": "https://github.com/apache/solr-operator",
@@ -16,6 +16,6 @@
       "method": "none"
     }
   ],
-  "fetched": "2026-07-11T11:50:51Z",
-  "post_count": 15
+  "fetched": "2026-08-01T15:49:00Z",
+  "post_count": 65
 }

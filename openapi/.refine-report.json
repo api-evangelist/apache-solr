@@ -1,0 +1,22 @@
+{
+  "provider": "apache-solr",
+  "sources": [
+    "apache-solr-cluster-api-openapi.yml",
+    "apache-solr-collections-api-openapi.yml",
+    "apache-solr-query-api-openapi.yml",
+    "apache-solr-schema-api-openapi.yml",
+    "apache-solr-update-api-openapi.yml"
+  ],
+  "outputs": [
+    "apache-solr-cluster-api-openapi.yml",
+    "apache-solr-collections-api-openapi.yml",
+    "apache-solr-query-api-openapi.yml",
+    "apache-solr-schema-api-openapi.yml",
+    "apache-solr-update-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
