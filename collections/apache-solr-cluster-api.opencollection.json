@@ -1,0 +1,233 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Solr HTTP Cluster API",
+    "version": "9.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cluster",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Invoke a Collections / Cluster API action (v1)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/admin/collections",
+            "params": [
+              {
+                "name": "action",
+                "value": "",
+                "type": "query",
+                "description": "Action name (e.g. CLUSTERSTATUS, CLUSTERPROP, BALANCESHARDUNIQUE, REPLACENODE, DELETENODE, ADDROLE, REMOVEROLE, OVERSEERSTATUS)"
+              },
+              {
+                "name": "collection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "shard",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "val",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "node",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sourceNode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "targetNode",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "role",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "async",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Invoke a Collections / Cluster API action (v1)"
+        },
+        {
+          "info": {
+            "name": "Get cluster status (v2)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/api/cluster"
+          },
+          "docs": "Get cluster status (v2)"
+        },
+        {
+          "info": {
+            "name": "Modify cluster roles",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/api/cluster",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify cluster roles"
+        },
+        {
+          "info": {
+            "name": "Set a cluster property",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://{host}:{port}/api/cluster/properties/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set a cluster property"
+        },
+        {
+          "info": {
+            "name": "Delete a cluster property",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://{host}:{port}/api/cluster/properties/:name",
+            "params": [
+              {
+                "name": "name",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a cluster property"
+        },
+        {
+          "info": {
+            "name": "Balance replicas across nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/api/cluster/replicas/balance",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Balance replicas across nodes"
+        },
+        {
+          "info": {
+            "name": "Migrate replicas from source nodes to target nodes",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/api/cluster/replicas/migrate",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Migrate replicas from source nodes to target nodes"
+        },
+        {
+          "info": {
+            "name": "Replace a node (recreate its replicas elsewhere)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/api/cluster/nodes/:sourceNode/replace",
+            "params": [
+              {
+                "name": "sourceNode",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace a node (recreate its replicas elsewhere)"
+        },
+        {
+          "info": {
+            "name": "Delete all replicas in a node",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/api/cluster/nodes/:node/clear/",
+            "params": [
+              {
+                "name": "node",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete all replicas in a node"
+        },
+        {
+          "info": {
+            "name": "Overseer status, metrics, and recent failures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/api/cluster/overseer"
+          },
+          "docs": "Overseer status, metrics, and recent failures"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

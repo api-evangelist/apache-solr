@@ -1,0 +1,191 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Apache Solr HTTP Cluster Schema API",
+    "version": "9.x"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Schema",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve the entire schema of a collection",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "wt",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the entire schema of a collection"
+        },
+        {
+          "info": {
+            "name": "Execute schema modification commands",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://{host}:{port}/solr/:collection/schema",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Execute schema modification commands"
+        },
+        {
+          "info": {
+            "name": "List all fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/fields",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "includeDynamic",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "showDefaults",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fl",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List all fields"
+        },
+        {
+          "info": {
+            "name": "Retrieve a field definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/fields/:fieldname",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "fieldname",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a field definition"
+        },
+        {
+          "info": {
+            "name": "List dynamic field rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/dynamicfields",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List dynamic field rules"
+        },
+        {
+          "info": {
+            "name": "List field types",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/fieldtypes",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List field types"
+        },
+        {
+          "info": {
+            "name": "List copy field rules",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/copyfields",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List copy field rules"
+        },
+        {
+          "info": {
+            "name": "Get the unique key field name",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://{host}:{port}/solr/:collection/schema/uniquekey",
+            "params": [
+              {
+                "name": "collection",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the unique key field name"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
