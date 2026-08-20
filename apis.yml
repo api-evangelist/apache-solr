@@ -30,6 +30,14 @@ tags:
   - Lucene
   - Search
   - SolrCloud
+  - Open-Source
+  - Java
+tags_raw:
+  - Enterprise Search
+  - Full-Text Search
+  - Lucene
+  - Search
+  - SolrCloud
   - Open Source
   - Java
 created: '2026-03-16'
@@ -98,6 +106,11 @@ apis:
     collection backup/restore, alias management, and cross-datacenter replication (CDCR) configuration.
   humanURL: https://solr.apache.org/guide/solr/latest/deployment-guide/cluster-node-management.html
   tags:
+  - Collection
+  - SolrCloud
+  - Cluster
+  - Management
+  tags_raw:
   - Collections
   - SolrCloud
   - Cluster
@@ -134,6 +147,8 @@ apis:
   description: Manage SolrCloud collections, replicas, and nodes
   humanURL: https://solr.apache.org/guide/solr/latest/query-guide/query-syntax-and-parsers.html
   tags:
+  - Collection
+  tags_raw:
   - Collections
   properties:
   - type: OpenAPI
@@ -160,7 +175,8 @@ apis:
   name: Apache Solr Update API
   description: Index, update, and delete documents
   humanURL: https://solr.apache.org/guide/solr/latest/query-guide/query-syntax-and-parsers.html
-  tags:
+  tags: []
+  tags_raw:
   - Update
   properties:
   - type: OpenAPI
