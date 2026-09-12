@@ -197,6 +197,8 @@ apis:
   - type: OpenAPI
     url: openapi/apache-solr-update-api-openapi.yml
 common:
+  - type: Website
+    url: https://www.apache.org/
   - type: SecurityPolicy
     url: https://github.com/apache/solr/blob/main/SECURITY.md
   - type: CodeOfConduct
