@@ -45,7 +45,7 @@ tags:
   - Lucene
   - Search
   - SolrCloud
-  - Open-Source
+  - Open Source
   - Java
 tags_raw:
   - Enterprise Search
@@ -55,6 +55,7 @@ tags_raw:
   - SolrCloud
   - Open Source
   - Java
+  - Open-Source
 created: '2026-03-16'
 modified: '2026-04-19'
 url: >-
@@ -99,40 +100,6 @@ apis:
   - type: Documentation
     url: >-
       https://solr.apache.org/guide/solr/latest/indexing-guide/indexing-with-update-handlers.html
-- aid: apache-solr:apache-solr-schema-api
-  name: Apache Solr Schema API
-  description: >-
-    The Solr Schema API provides REST endpoints for managing the schema of a Solr collection, including
-    field types, fields, dynamic fields, and copy fields. The Managed Schema approach allows runtime schema
-    modifications without server restart via the /schema endpoint.
-  humanURL: https://solr.apache.org/guide/solr/latest/indexing-guide/schema-api.html
-  tags:
-  - Schema
-  - REST
-  - Management
-  properties:
-  - type: Documentation
-    url: https://solr.apache.org/guide/solr/latest/indexing-guide/schema-api.html
-- aid: apache-solr:apache-solr-collections-api
-  name: Apache Solr Collections API
-  description: >-
-    The Solr Collections API provides REST endpoints for managing SolrCloud collections, shards, replicas,
-    and aliases. It supports collection creation, deletion, modification, shard splitting, replica management,
-    collection backup/restore, alias management, and cross-datacenter replication (CDCR) configuration.
-  humanURL: https://solr.apache.org/guide/solr/latest/deployment-guide/cluster-node-management.html
-  tags:
-  - Collection
-  - SolrCloud
-  - Cluster
-  - Management
-  tags_raw:
-  - Collections
-  - SolrCloud
-  - Cluster
-  - Management
-  properties:
-  - type: Documentation
-    url: https://solr.apache.org/guide/solr/latest/deployment-guide/cluster-node-management.html
 - aid: apache-solr:apache-solr-config-api
   name: Apache Solr Config API
   description: >-
@@ -159,15 +126,25 @@ apis:
     url: openapi/apache-solr-cluster-api-openapi.yml
 - aid: apache-solr:apache-solr-collections-api
   name: Apache Solr Collections API
-  description: Manage SolrCloud collections, replicas, and nodes
-  humanURL: https://solr.apache.org/guide/solr/latest/query-guide/query-syntax-and-parsers.html
+  description: The Solr Collections API provides REST endpoints for managing SolrCloud collections, shards,
+    replicas, and aliases. It supports collection creation, deletion, modification, shard splitting, replica
+    management, collection backup/restore, alias management, and cross-datacenter replication (CDCR) configuration.
+  humanURL: https://solr.apache.org/guide/solr/latest/deployment-guide/cluster-node-management.html
   tags:
   - Collection
+  - SolrCloud
+  - Cluster
+  - Management
   tags_raw:
   - Collections
+  - SolrCloud
+  - Cluster
+  - Management
   properties:
   - type: OpenAPI
     url: openapi/apache-solr-collections-api-openapi.yml
+  - type: Documentation
+    url: https://solr.apache.org/guide/solr/latest/deployment-guide/cluster-node-management.html
 - aid: apache-solr:apache-solr-query-api
   name: Apache Solr Query API
   description: Search a collection
@@ -179,13 +156,19 @@ apis:
     url: openapi/apache-solr-query-api-openapi.yml
 - aid: apache-solr:apache-solr-schema-api
   name: Apache Solr Schema API
-  description: Read and modify the schema of a collection
-  humanURL: https://solr.apache.org/guide/solr/latest/query-guide/query-syntax-and-parsers.html
+  description: The Solr Schema API provides REST endpoints for managing the schema of a Solr collection,
+    including field types, fields, dynamic fields, and copy fields. The Managed Schema approach allows runtime
+    schema modifications without server restart via the /schema endpoint.
+  humanURL: https://solr.apache.org/guide/solr/latest/indexing-guide/schema-api.html
   tags:
   - Schema
+  - REST
+  - Management
   properties:
   - type: OpenAPI
     url: openapi/apache-solr-schema-api-openapi.yml
+  - type: Documentation
+    url: https://solr.apache.org/guide/solr/latest/indexing-guide/schema-api.html
 - aid: apache-solr:apache-solr-update-api
   name: Apache Solr Update API
   description: Index, update, and delete documents
