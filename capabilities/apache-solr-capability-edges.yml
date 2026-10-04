@@ -1,0 +1,25 @@
+slug: apache-solr
+provider: Apache Solr
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Cluster
+  spec_file: apache-solr-cluster-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: POST /api/cluster/replicas/balance "Balance replicas across nodes"; POST /api/cluster/nodes/{sourceNode}/replace
+    "Replace a node (recreate its replicas elsewhere)"
+  reason: Node and replica placement, cluster properties and overseer status are compute/cluster infrastructure
+    administration for a self-hosted search platform, i.e. IT Infrastructure Management.

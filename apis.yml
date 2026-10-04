@@ -180,6 +180,9 @@ apis:
   - type: OpenAPI
     url: openapi/apache-solr-update-api-openapi.yml
 common:
+  - type: CapabilityMap
+    url: capabilities/apache-solr-capability-edges.yml
+    name: Apache Solr Business Capability Map
   - type: Website
     url: https://www.apache.org/
   - type: SecurityPolicy
