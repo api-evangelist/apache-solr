@@ -2,11 +2,11 @@
   "repo": "apache-solr",
   "feeds": [
     {
-      "source": "https://github.com/apache/solr-operator",
-      "feed_url": "https://github.com/apache/solr-operator",
+      "source": "https://solr.apache.org/news.html",
+      "feed_url": "https://solr.apache.org/feeds/solr/news.atom.xml",
       "title": "",
       "saved": 0,
-      "method": "none"
+      "method": "discovered"
     },
     {
       "source": "https://solr.apache.org/feeds/solr/news.atom.xml",
@@ -14,8 +14,15 @@
       "title": "",
       "saved": 0,
       "method": "feed"
+    },
+    {
+      "source": "https://github.com/apache/solr-operator",
+      "feed_url": "https://github.com/apache/solr-operator",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "fetched": "2026-10-03T12:30:02Z",
-  "post_count": 65
+  "fetched": "2026-10-10T13:15:00Z",
+  "post_count": 66
 }
