@@ -1,4 +1,4 @@
-# Apache Solr (apache-solr)
+# Apache Solr
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,142 +66,132 @@
 
 Apache Solr is an open-source enterprise search platform built on Apache Lucene. It provides distributed indexing, replication, load-balanced querying, automated failover and recovery, and centralized configuration through SolrCloud. Solr exposes comprehensive REST/HTTP APIs for document indexing, full-text search with faceting and highlighting, schema management, collections management, and cluster operations. It is an Apache Software Foundation project used by major organizations for enterprise-scale search solutions.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/apache-solr/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/apache-solr/refs/heads/main/apis.yml)
+**Areas:** Enterprise Search · Full-Text Search · Lucene · Search · SolrCloud · Open Source · Java
 
-## Scope
+## Apache Solr on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for Apache Solr is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/apache-solr/](https://apis.io/providers/apache-solr/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (8)
 
-- Enterprise Search
-- Full-Text Search
-- Lucene
-- Search
-- SolrCloud
-- Open Source
-- Java
+- [Apache Solr Search API](https://apis.io/apis/apache-solr/apache-solr-search-api/) — The Solr Search API provides HTTP endpoints for full-text document search, including query parsers (Standard, DisMax, Extended DisMax), JSON Query DSL,…
+- [Apache Solr Indexing API](https://apis.io/apis/apache-solr/apache-solr-indexing-api/) — The Solr Indexing API provides HTTP endpoints for adding, updating, and deleting documents from the search index. It supports JSON, XML, CSV, and binary…
+- [Apache Solr Config API](https://apis.io/apis/apache-solr/apache-solr-config-api/) — The Solr Config API and Request Parameters API provide REST endpoints for managing Solr's solrconfig.xml settings at runtime without server restart,…
+- [Apache Solr Cluster API](https://apis.io/apis/apache-solr/apache-solr-cluster-api/) — Cluster status and properties
+- [Apache Solr Collections API](https://apis.io/apis/apache-solr/apache-solr-collections-api/) — The Solr Collections API provides REST endpoints for managing SolrCloud collections, shards, replicas, and aliases. It supports collection creation,…
+- [Apache Solr Query API](https://apis.io/apis/apache-solr/apache-solr-query-api/) — Search a collection
+- [Apache Solr Schema API](https://apis.io/apis/apache-solr/apache-solr-schema-api/) — The Solr Schema API provides REST endpoints for managing the schema of a Solr collection, including field types, fields, dynamic fields, and copy fields.…
+- [Apache Solr Update API](https://apis.io/apis/apache-solr/apache-solr-update-api/) — Index, update, and delete documents
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-16
-- **Modified:** 2026-04-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### Apache Solr Search API
+Which operations an agent can call, which act, and which need a human in the loop.
 
-The Solr Search API provides HTTP endpoints for full-text document search, including query parsers (Standard, DisMax, Extended DisMax), JSON Query DSL, faceting and JSON Facet API, spell checking, suggestions, MoreLikeThis, spatial search, dense vector search, result grouping, highlighting, and result clustering. Queries are submitted to the /select handler and support complex relevancy scoring with Learning to Rank.
+- [Apache Solr Agentic Access](https://apis.io/agentic-access/apache-solr/apache-solr-agentic-access/)
 
-- **Human URL:** [https://solr.apache.org/guide/solr/latest/query-guide/query-syntax-and-parsers.html](https://solr.apache.org/guide/solr/latest/query-guide/query-syntax-and-parsers.html)
+#### Collections (6)
 
-#### Tags
+Postman and Open Collection request collections.
 
-- Search
-- Faceting
-- Full-Text Search
-- REST
-- Indexing
+- [Apache Solr HTTP API](https://apis.io/collections/apache-solr/open-apache-solr/)
+- [Apache Solr HTTP Cluster API](https://apis.io/collections/apache-solr/open-apache-solr-cluster-api/)
+- [Apache Solr HTTP Cluster Collections API](https://apis.io/collections/apache-solr/open-apache-solr-collections-api/)
+- [Apache Solr HTTP Cluster Query API](https://apis.io/collections/apache-solr/open-apache-solr-query-api/)
+- [Apache Solr HTTP Cluster Schema API](https://apis.io/collections/apache-solr/open-apache-solr-schema-api/)
+- [Apache Solr HTTP Cluster Update API](https://apis.io/collections/apache-solr/open-apache-solr-update-api/)
 
-#### Properties
+#### Security (3)
 
-- [Documentation](https://solr.apache.org/guide/solr/latest/query-guide/query-syntax-and-parsers.html)
-- [Documentation](https://solr.apache.org/guide/solr/latest/query-guide/json-request-api.html)
-- [Postman Collection](collections/apache-solr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apache-solr.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+Authentication, trust centre, and vulnerability disclosure.
 
-### Apache Solr Indexing API
+- [Apache Solr Authentication](https://apis.io/security/apache-solr/apache-solr-authentication/)
+- [Apache Solr Domain Security](https://apis.io/security/apache-solr/apache-solr-domain-security/)
+- [Apache Solr Vulnerability Disclosure](https://apis.io/security/apache-solr/apache-solr-vulnerability-disclosure/)
 
-The Solr Indexing API provides HTTP endpoints for adding, updating, and deleting documents from the search index. It supports JSON, XML, CSV, and binary Solr formats via the /update handler, atomic updates, optimistic concurrency, document routing in SolrCloud, and the DataImportHandler for bulk loading from databases and file systems.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://solr.apache.org/guide/solr/latest/indexing-guide/indexing-with-update-handlers.html](https://solr.apache.org/guide/solr/latest/indexing-guide/indexing-with-update-handlers.html)
+Published plans, tiers and prices.
 
-#### Tags
+- [Apache Solr Plans Pricing](https://apis.io/plans/apache-solr/apache-solr-plans-pricing/)
 
-- Indexing
-- Documents
-- REST
-- Updates
+#### Rate limits (1)
 
-#### Properties
+Published request limits.
 
-- [Documentation](https://solr.apache.org/guide/solr/latest/indexing-guide/indexing-with-update-handlers.html)
-- [Postman Collection](collections/apache-solr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apache-solr.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+- [Apache Solr Rate Limits](https://apis.io/rate-limits/apache-solr/apache-solr-rate-limits/)
 
-### Apache Solr Schema API
+#### FinOps (1)
 
-The Solr Schema API provides REST endpoints for managing the schema of a Solr collection, including field types, fields, dynamic fields, and copy fields. The Managed Schema approach allows runtime schema modifications without server restart via the /schema endpoint.
+What the API costs to run, by operation.
 
-- **Human URL:** [https://solr.apache.org/guide/solr/latest/indexing-guide/schema-api.html](https://solr.apache.org/guide/solr/latest/indexing-guide/schema-api.html)
+- [Apache Solr Finops](https://apis.io/finops/apache-solr/apache-solr-finops/)
 
-#### Tags
+## Where to find this API
 
-- Schema
-- REST
-- Management
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-#### Properties
-
-- [Documentation](https://solr.apache.org/guide/solr/latest/indexing-guide/schema-api.html)
-- [Postman Collection](collections/apache-solr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apache-solr.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apache Solr Collections API
-
-The Solr Collections API provides REST endpoints for managing SolrCloud collections, shards, replicas, and aliases. It supports collection creation, deletion, modification, shard splitting, replica management, collection backup/restore, alias management, and cross-datacenter replication (CDCR) configuration.
-
-- **Human URL:** [https://solr.apache.org/guide/solr/latest/deployment-guide/cluster-node-management.html](https://solr.apache.org/guide/solr/latest/deployment-guide/cluster-node-management.html)
-
-#### Tags
-
-- Collections
-- SolrCloud
-- Cluster
-- Management
-
-#### Properties
-
-- [Documentation](https://solr.apache.org/guide/solr/latest/deployment-guide/cluster-node-management.html)
-- [Postman Collection](collections/apache-solr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apache-solr.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-### Apache Solr Config API
-
-The Solr Config API and Request Parameters API provide REST endpoints for managing Solr's solrconfig.xml settings at runtime without server restart, including request handler configuration, search component configuration, query settings, and configset management. The v2 API provides a modern JSON-based interface for all configuration operations.
-
-- **Human URL:** [https://solr.apache.org/guide/solr/latest/configuration-guide/config-api.html](https://solr.apache.org/guide/solr/latest/configuration-guide/config-api.html)
-
-#### Tags
-
-- Configuration
-- REST
-- Management
-
-#### Properties
-
-- [Documentation](https://solr.apache.org/guide/solr/latest/configuration-guide/config-api.html)
-- [Postman Collection](collections/apache-solr.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/apache-solr.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-
-## Common Properties
-
-- [GitHub Repository](https://github.com/apache/solr)
+- [Website](https://www.apache.org/)
 - [Documentation](https://solr.apache.org/guide/solr/latest/)
-- [Portal](https://solr.apache.org/)
-- [Getting Started](https://solr.apache.org/guide/solr/latest/getting-started/introduction.html)
-- [Release Notes](https://github.com/apache/solr/releases)
+- [Getting started](https://solr.apache.org/guide/solr/latest/getting-started/introduction.html)
 - [Support](https://solr.apache.org/community.html)
-- [Terms of Service](https://www.apache.org/licenses/)
-- [SDK](https://solr.apache.org/guide/solr/latest/deployment-guide/solrj.html)
-- [SDK](https://github.com/apache/solr-operator)
-- [Features](undefined)
-- [Use Cases](undefined)
-- [Integrations](undefined)
+- [Blog](https://solr.apache.org/news.html)
+- [Terms of service](https://www.apache.org/licenses/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** info@apievangelist.com
+**Kin Score 37.0** — thin · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 62.5 |
+| Contract quality | 24.0 |
+| Contract governance | 0.0 |
+| Operational transparency | 39.5 |
+| Developer ergonomics | 57.1 |
+| Access clarity | 18.4 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 21.6** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/apache-solr/](https://apis.io/providers/apache-solr/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Apache Solr: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/apache-solr/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
